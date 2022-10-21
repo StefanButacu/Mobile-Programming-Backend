@@ -31,9 +31,12 @@ app.use(async (ctx, next) => {
 });
 
 class Item {
-  constructor({ id, text, date, version }) {
+  constructor({ id, foodName, price, dateBought, onSale, date, version }) {
     this.id = id;
-    this.text = text;
+    this.foodName = foodName;
+    this.price = price;
+    this.dateBought = dateBought;
+    this.onSale = onSale;
     this.date = date;
     this.version = version;
   }
@@ -41,40 +44,46 @@ class Item {
 
 const items = [];
 for (let i = 0; i < 3; i++) {
-  items.push(new Item({ id: `${i}`, text: `item ${i}`, date: new Date(Date.now() + i), version: 1 }));
+  items.push(new Item(
+      { id: i, foodName: `FOOD ${i}`,
+        price: i + 20,
+        dateBought: new Date(Date.now() + i),
+        onSale: i % 2 ? 'true' : 'false',
+        date: new Date(Date.now() + i), version: 1 }));
 }
 let lastUpdated = items[items.length - 1].date;
 let lastId = items[items.length - 1].id;
 const pageSize = 10;
 
-const broadcast = data =>
-  wss.clients.forEach(client => {
-    if (client.readyState === WebSocket.OPEN) {
-      client.send(JSON.stringify(data));
-    }
-  });
+// const broadcast = data =>
+//   wss.clients.forEach(client => {
+//     if (client.readyState === WebSocket.OPEN) {
+//       client.send(JSON.stringify(data));
+//     }
+//   });
 
 const router = new Router();
 
 router.get('/item', ctx => {
-  const ifModifiedSince = ctx.request.get('If-Modif ied-Since');
-  if (ifModifiedSince && new Date(ifModifiedSince).getTime() >= lastUpdated.getTime() - lastUpdated.getMilliseconds()) {
-    ctx.response.status = 304; // NOT MODIFIED
-    return;
-  }
-  const text = ctx.request.query.text;
-  const page = parseInt(ctx.request.query.page) || 1;
-  ctx.response.set('Last-Modified', lastUpdated.toUTCString());
-  const sortedItems = items
-    .filter(item => text ? item.text.indexOf(text) !== -1 : true)
-    .sort((n1, n2) => -(n1.date.getTime() - n2.date.getTime()));
-  const offset = (page - 1) * pageSize;
+  // const ifModifiedSince = ctx.request.get('If-Modified-Since');
+  // if (ifModifiedSince && new Date(ifModifiedSince).getTime() >= lastUpdated.getTime() - lastUpdated.getMilliseconds()) {
+  //   ctx.response.status = 304; // NOT MODIFIED
+  //   return;
+  // }
+  // const text = ctx.request.query.text;
+  // const page = parseInt(ctx.request.query.page) || 1;
+  // ctx.response.set('Last-Modified', lastUpdated.toUTCString());
+  // const sortedItems = items
+  //   .filter(item => text ? item.text.indexOf(text) !== -1 : true)
+  //   .sort((n1, n2) => -(n1.date.getTime() - n2.date.getTime()));
+  // const offset = (page - 1) * pageSize;
   // ctx.response.body = {
   //   page,
   //   items: sortedItems.slice(offset, offset + pageSize),
   //   more: offset + pageSize < sortedItems.length
   // };
   ctx.response.body = items;
+    console.log(items);
   ctx.response.status = 200;
 });
 
@@ -92,12 +101,12 @@ router.get('/item/:id', async (ctx) => {
 
 const createItem = async (ctx) => {
   const item = ctx.request.body;
-  if (!item.text) { // validation
-    ctx.response.body = { issue: [{ error: 'Text is missing' }] };
+  if (!item.foodName || !item.dateBought || !item.price) { // validation
+    ctx.response.body = { issue: [{ error: 'FoodName or DateBought or Price missing' }] };
     ctx.response.status = 400; //  BAD REQUEST
     return;
   }
-  item.id = `${parseInt(lastId) + 1}`;
+  item.id = parseInt(lastId) + 1;
   lastId = item.id;
   item.date = new Date();
   item.version = 1;
@@ -157,15 +166,14 @@ router.del('/item/:id', ctx => {
   ctx.response.status = 204; // no content
 });
 
-setInterval(() => {
-  lastUpdated = new Date();
-  lastId = `${parseInt(lastId) + 1}`;
-  const item = new Item({ id: lastId, text: `item ${lastId}`, date: lastUpdated, version: 1 });
-  items.push(item);
-  console.log(`
-   ${item.text}`);
-  broadcast({ event: 'created', payload: { item } });
-}, 150000);
+// setInterval(() => {
+//   lastUpdated = new Date();
+//   lastId = `${parseInt(lastId) + 1}`;
+//   const item = new Item({ id: lastId, text: `item ${lastId}`, date: lastUpdated, version: 1 });
+//   items.push(item);
+//   console.log(`New item: ${item.text}`);
+//   broadcast({ event: 'created', payload: { item } });
+// }, 150000000);
 
 app.use(router.routes());
 app.use(router.allowedMethods());
