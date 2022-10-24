@@ -45,7 +45,7 @@ class Item {
 const items = [];
 for (let i = 0; i < 3; i++) {
   items.push(new Item(
-      { id: i, foodName: `FOOD ${i}`,
+      { id: `${i+1}`, foodName: `FOOD ${i+1}`,
         price: i + 20,
         dateBought: new Date(Date.now() + i),
         onSale: i % 2 ? 'true' : 'false',
@@ -55,12 +55,12 @@ let lastUpdated = items[items.length - 1].date;
 let lastId = items[items.length - 1].id;
 const pageSize = 10;
 
-// const broadcast = data =>
-//   wss.clients.forEach(client => {
-//     if (client.readyState === WebSocket.OPEN) {
-//       client.send(JSON.stringify(data));
-//     }
-//   });
+const broadcast = data =>
+  wss.clients.forEach(client => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(JSON.stringify(data));
+    }
+  });
 
 const router = new Router();
 
@@ -83,7 +83,7 @@ router.get('/item', ctx => {
   //   more: offset + pageSize < sortedItems.length
   // };
   ctx.response.body = items;
-    console.log(items);
+    // console.log(items);
   ctx.response.status = 200;
 });
 
@@ -123,9 +123,12 @@ router.post('/item', async (ctx) => {
 router.put('/item/:id', async (ctx) => {
   const id = ctx.params.id;
   const item = ctx.request.body;
+  console.log("ctx.param.id=", id);
+  console.log("ctx.request.body=", item);
   item.date = new Date();
   const itemId = item.id;
-  if (itemId && id !== item.id) {
+  if (itemId && id != item.id) {
+
     ctx.response.body = { issue: [{ error: `Param id and body id should be the same` }] };
     ctx.response.status = 400; // BAD REQUEST
     return;
@@ -134,8 +137,8 @@ router.put('/item/:id', async (ctx) => {
     await createItem(ctx);
     return;
   }
-  const index = items.findIndex(item => item.id === id);
-  if (index === -1) {
+  const index = items.findIndex(item => item.id == id);
+  if (index == -1) {
     ctx.response.body = { issue: [{ error: `item with id ${id} not found` }] };
     ctx.response.status = 400; // BAD REQUEST
     return;
@@ -166,14 +169,17 @@ router.del('/item/:id', ctx => {
   ctx.response.status = 204; // no content
 });
 
-// setInterval(() => {
-//   lastUpdated = new Date();
-//   lastId = `${parseInt(lastId) + 1}`;
-//   const item = new Item({ id: lastId, text: `item ${lastId}`, date: lastUpdated, version: 1 });
-//   items.push(item);
-//   console.log(`New item: ${item.text}`);
-//   broadcast({ event: 'created', payload: { item } });
-// }, 150000000);
+setInterval(() => {
+  lastUpdated = new Date();
+  lastId = `${parseInt(lastId) + 1}`;
+  const item = new Item({ id: lastId, foodName: `food ${lastId}`,
+  dateBought: lastUpdated,
+  onSale: (parseInt(lastId) + 1) % 2 == 0? true : false,
+    date: lastUpdated, version: 1 });
+  items.push(item);
+  console.log(`New item: ${item.foodName}`);
+  broadcast({ event: 'created', payload: { item } });
+}, 10000);
 
 app.use(router.routes());
 app.use(router.allowedMethods());
