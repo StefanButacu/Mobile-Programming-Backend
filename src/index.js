@@ -1,14 +1,42 @@
-const Koa = require('koa');
-const app = new Koa();
-const server = require('http').createServer(app.callback());
-const WebSocket = require('ws');
-const wss = new WebSocket.Server({ server });
-const Router = require('koa-router');
-const cors = require('koa-cors');
-const bodyparser = require('koa-bodyparser');
+import {exceptionHandler, jwtConfig, timingLogger} from "./utils";
 
-app.use(bodyparser());
+const Koa = require('koa');
+import WebSocket from 'ws';
+import http from 'http';
+import Router from 'koa-router';
+import bodyparser from 'koa-bodyparser';
+import jwt from 'koa-jwt';
+import {router as authRouter } from "./api/router";
+import cors from '@koa/cors';
+
+
+const app = new Koa();
+const server = http.createServer(app.callback());
+const wss = new WebSocket.Server({ server });
+initWss(wss);
 app.use(cors());
+app.use(bodyparser());
+app.use(exceptionHandler);
+app.use(timingLogger);
+
+const prefix = '/api';
+const publicApiRouter = new Router({prefix});
+
+publicApiRouter.use('/auth', authRouter.routes());
+app.use(publicApiRouter.routes())
+    .use(publicApiRouter.allowedMethods);
+
+app.use(jwt(jwtConfig));
+
+
+const protectedApiRouter = new Router({prefix});
+protectedApiRouter.use('/item', noteRouter.routes());
+app.use(protectedApiRouter.routes())
+    .use(protectedApiRouter.allowedMethods());
+
+server.listen(3000);
+console.log('started on port 3000');
+
 app.use(async (ctx, next) => {
   const start = new Date();
   await next();
@@ -184,4 +212,3 @@ setInterval(() => {
 app.use(router.routes());
 app.use(router.allowedMethods());
 
-server.listen(3000);
