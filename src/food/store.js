@@ -13,6 +13,11 @@ export class FoodStore {
         return this.store.findOne(props);
     }
 
+    async update(props, item) {
+        return this.store.update(props, item);
+    }
+
+
     async insert(item){
         if (!item.foodName || !item.dateBought || !item.price) { // validation
             throw new Error('Missing properties');

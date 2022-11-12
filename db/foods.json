@@ -1,7 +1,9 @@
+{"foodName":"Online","price":444,"dateBought":"2022-11-04T08:19:16.000Z","onSale":true,"userId":"vI1GMkzBza5i82zj","_id":"1yXGBy2X13V9ehI5"}
 {"foodName":"food3aa44","price":34,"onSale":"true","dateBought":"10-23-2022","userId":"vI1GMkzBza5i82zj","_id":"5jiukIovSHq5rHhA"}
+{"foodName":"FOOOD","price":12,"dateBought":"2022-11-12T12:50:48.055Z","onSale":true,"userId":"vI1GMkzBza5i82zj","_id":"J9FgMbXSRHgzljtH"}
 {"foodName":"AddedFOodB","price":23,"dateBought":"2022-10-29T09:21:52.330Z","onSale":true,"userId":"vI1GMkzBza5i82zz","_id":"Ln7yliqbFrNhafAw"}
 {"_id":"RCdHQoGzBtGUgkjg","foodName":"food2aaaa","price":32,"onSale":"false","dateBought":"12-10-2022","userId":"vI1GMkzBza5i82zj"}
-{"foodName":"newF","price":22,"dateBought":"2022-10-29T09:25:06.526Z","onSale":true,"userId":"vI1GMkzBza5i82zz","_id":"XbUUbPcpuH94BYsz"}
-{"_id":"tCc1ltDb8XRPJ2y1","foodName":"food1b","price":20,"onSale":"true","dateBought":"10-10-2022","userId":"vI1GMkzBza5i82zz"}
-{"_id":"tCc1ltDb8XRPJ2yn","foodName":"food1a","price":20,"onSale":"true","dateBought":"10-10-2022","userId":"vI1GMkzBza5i82zj"}
-{"foodName":"food2a","price":22,"onSale":"false","dateBought":"12-10-2022","userId":"vI1GMkzBza5i82zj","_id":"xaDRAPTAzvcyV0Tr"}
+{"foodName":"Salad","price":42,"dateBought":"2022-11-12T14:02:46.123Z","onSale":true,"userId":"vI1GMkzBza5i82zj","_id":"bjQkfA5V3Ncqpa4p"}
+{"foodName":"Salad","price":42,"dateBought":"2022-11-12T14:02:46.123Z","onSale":true,"userId":"vI1GMkzBza5i82zj","_id":"bjQkfA5V3Ncqpa4p"}
+{"_id":"RCdHQoGzBtGUgkjg","foodName":"Lasagna","price":32,"onSale":"false","dateBought":"2022-12-09T22:00:00.000Z","userId":"vI1GMkzBza5i82zj"}
+{"foodName":"Beef","price":34,"onSale":"true","dateBought":"2022-10-22T21:00:00.000Z","userId":"vI1GMkzBza5i82zj","_id":"5jiukIovSHq5rHhA"}
