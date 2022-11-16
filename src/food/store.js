@@ -19,9 +19,9 @@ export class FoodStore {
 
 
     async insert(item){
-        if (!item.foodName || !item.dateBought || !item.price) { // validation
-            throw new Error('Missing properties');
-        }
+        // if (!item.foodName || !item.dateBought || !item.price) { // validation
+        //     throw new Error('Missing properties');
+        // }
         return this.store.insert(item);
     }
 }

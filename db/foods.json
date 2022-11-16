@@ -1,9 +1,7 @@
-{"foodName":"Online","price":444,"dateBought":"2022-11-04T08:19:16.000Z","onSale":true,"userId":"vI1GMkzBza5i82zj","_id":"1yXGBy2X13V9ehI5"}
-{"foodName":"food3aa44","price":34,"onSale":"true","dateBought":"10-23-2022","userId":"vI1GMkzBza5i82zj","_id":"5jiukIovSHq5rHhA"}
-{"foodName":"FOOOD","price":12,"dateBought":"2022-11-12T12:50:48.055Z","onSale":true,"userId":"vI1GMkzBza5i82zj","_id":"J9FgMbXSRHgzljtH"}
-{"foodName":"AddedFOodB","price":23,"dateBought":"2022-10-29T09:21:52.330Z","onSale":true,"userId":"vI1GMkzBza5i82zz","_id":"Ln7yliqbFrNhafAw"}
-{"_id":"RCdHQoGzBtGUgkjg","foodName":"food2aaaa","price":32,"onSale":"false","dateBought":"12-10-2022","userId":"vI1GMkzBza5i82zj"}
-{"foodName":"Salad","price":42,"dateBought":"2022-11-12T14:02:46.123Z","onSale":true,"userId":"vI1GMkzBza5i82zj","_id":"bjQkfA5V3Ncqpa4p"}
-{"foodName":"Salad","price":42,"dateBought":"2022-11-12T14:02:46.123Z","onSale":true,"userId":"vI1GMkzBza5i82zj","_id":"bjQkfA5V3Ncqpa4p"}
-{"_id":"RCdHQoGzBtGUgkjg","foodName":"Lasagna","price":32,"onSale":"false","dateBought":"2022-12-09T22:00:00.000Z","userId":"vI1GMkzBza5i82zj"}
-{"foodName":"Beef","price":34,"onSale":"true","dateBought":"2022-10-22T21:00:00.000Z","userId":"vI1GMkzBza5i82zj","_id":"5jiukIovSHq5rHhA"}
+{"foodName":"bb","price":12,"dateBought":"2022-11-16T15:38:28.286Z","onSale":true,"latitude":47.17370399802867,"longitude":23.879524424178683,"userId":"vI1GMkzBza5i82zz","_id":"00hVC0ofpUDBnvhQ"}
+{"foodName":"","price":0,"dateBought":"2022-11-16T15:38:39.449Z","onSale":true,"latitude":46.7826992,"longitude":23.6179142,"userId":"vI1GMkzBza5i82zz","_id":"6DPrEFQSEqzkPkep"}
+{"foodName":"mancare C","price":421,"dateBought":"2022-11-16T20:22:25.000Z","onSale":false,"latitude":44.8538504004976,"longitude":13.840034810272725,"userId":"vI1GMkzBza5i82zj","_id":"8qkysXgidaKY4Yak"}
+{"foodName":"FOOOD","price":1212,"dateBought":"2022-11-16T16:13:02.000Z","onSale":true,"latitude":44.22690168944359,"longitude":25.31341381876322,"userId":"vI1GMkzBza5i82zj","_id":"Bfit4DGTapc8Gr7z"}
+{"foodName":"","price":0,"dateBought":"2022-11-16T15:38:39.449Z","onSale":true,"latitude":46.7826992,"longitude":23.6179142,"userId":"vI1GMkzBza5i82zz","_id":"mdxIponCHwao4MeT"}
+{"foodName":"FA","price":12,"dateBought":"2022-11-15T19:17:07.000Z","onSale":true,"latitude":46.54007516179522,"longitude":24.54962883138152,"userId":"vI1GMkzBza5i82zj","_id":"qks64BFannVwPKxg"}
+{"foodName":"bb","price":12,"dateBought":"2022-11-16T15:38:28.286Z","onSale":true,"latitude":47.17370399802867,"longitude":23.879524424178683,"userId":"vI1GMkzBza5i82zz","_id":"tsRRW61jEA963jCR"}

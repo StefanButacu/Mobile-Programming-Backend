@@ -33,11 +33,12 @@ router.get('/:id', async (ctx) =>{
 
 const createFood = async (ctx, food, response) => {
     try{
+        console.log(food);
         const userId = ctx.state.user._id;
         food.userId = userId;
         response.body = await foodStore.insert(food);
         response.status = 201;
-        broadcast(userId, {type:'created', payload: food});
+       // broadcast(userId, {type:'created', payload: food});
     }catch (err){
         response.body = {message: err.message};
         response.status = 400;
@@ -63,7 +64,7 @@ router.put('/:id', async (ctx) => {
     const id = ctx.params.id;
     const itemId = item._id;
     const response = ctx.response;
-    if (itemId && itemId != id) {
+    if (itemId && itemId !== id) {
         response.body = { message: 'Param id and body _id should be the same' };
         response.status = 400; // bad request
         return;
